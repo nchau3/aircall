@@ -1,8 +1,11 @@
 import React from "react";
+import { formatDate } from "../helpers";
 
 import "../css/call.css";
 
 const Call = (props) => {
+  const callTime = formatDate(props.created_at);
+
   return (
     <li className="call-container">
       <span className="call-overview">
@@ -16,8 +19,8 @@ const Call = (props) => {
           </div>
         </div>
         <div className="call-overview-right">
-          <div>⋮ 07:58</div>
-          <div className="twelve-hour">PM</div>
+          <div>⋮ {callTime.time} </div>
+          <div className="twelve-hour">{callTime.twelveHour}</div>
         </div>
       </span>
     </li>

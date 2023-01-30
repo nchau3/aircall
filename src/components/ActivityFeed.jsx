@@ -8,12 +8,14 @@ import Call from "./Call";
 import "../css/activity-feed.css";
 
 const ActivityFeed = () => {
+  const [isLoading, setIsLoading] = useState(true);
   const [calls, setCalls] = useState([]);
 
   useEffect(() => {
     axios.get("https://charming-bat-singlet.cyclic.app/https://cerulean-marlin-wig.cyclic.app/activities")
     .then(response => {
       setCalls(response.data);
+      setIsLoading(false);
     })
   }, []);
 
@@ -28,11 +30,16 @@ const ActivityFeed = () => {
       via={call.via}
       duration={call.via}
       call_type={call.call_type}
+      created_at={call.created_at}
       />
     )
   })
 
   return (
+    isLoading 
+    ? 
+    <h3>LOADING CALLS...</h3>
+    :
     <ul>
       {callList}
     </ul>
