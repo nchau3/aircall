@@ -15,7 +15,7 @@ const ActivityFeed = () => {
   useEffect(() => {
     axios.get("https://charming-bat-singlet.cyclic.app/https://cerulean-marlin-wig.cyclic.app/activities")
     .then(response => {
-      setCalls(response.data);
+      setCalls((response.data).reverse());
       setIsLoading(false);
     })
   }, []);
