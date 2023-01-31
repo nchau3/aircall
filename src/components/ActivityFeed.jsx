@@ -1,27 +1,17 @@
-import React, { Fragment, useEffect, useState } from "react";
-import axios from "axios";
+import React from "react";
 
 //components
 import Call from "./Call";
 
 //styles
 import "../css/activity-feed.css";
+
+//helpers
 import { checkDay } from "../helpers";
-import NavBar from "./NavBar";
 
-const ActivityFeed = () => {
-  const [isLoading, setIsLoading] = useState(true);
-  const [calls, setCalls] = useState([]);
-
-  useEffect(() => {
-    axios.get("https://charming-bat-singlet.cyclic.app/https://cerulean-marlin-wig.cyclic.app/activities")
-    .then(response => {
-      setCalls((response.data).reverse());
-      setIsLoading(false);
-    })
-  }, []);
-    
-  const callList = checkDay(calls).map(call => {
+const ActivityFeed = (props) => {
+  
+  const callList = checkDay(props.calls).map(call => {
     return (
       <Call
       key={call.id}
@@ -39,10 +29,6 @@ const ActivityFeed = () => {
   });
 
   return (
-    isLoading 
-    ? 
-    <h3>LOADING CALLS...</h3>
-    :
     <ul>
       {callList}
     </ul>

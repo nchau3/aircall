@@ -11,8 +11,7 @@
 }
 
 .nav-header {
-  font-size: 1.5rem;
-  margin-right: 1rem;
+  font-size: 1.75rem;
 }
 
 .nav-link-list {
@@ -21,7 +20,18 @@
 }
 
 .nav-link {
+  display: flex;
+  align-items: center;
+  font-size: 1rem;;
   padding: 0 .5rem;
-  height: fit-content;
+  height: 20px;
   border-right: 1px solid rgb(196, 196, 196);
+}
+
+.nav-link:hover {
+  opacity: .8;
+}
+
+.nav-link:active {
+  opacity: .6;
 }

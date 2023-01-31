@@ -1,9 +1,14 @@
 import React from "react";
+
+//components
+import DateDivider from "./DateDivider";
+
+//styles
+import "../css/call.css";
+
+//helpers
 import { callTypeString, formatDay, formatTime } from "../helpers";
 import classNames from "classnames";
-
-import "../css/call.css";
-import DateDivider from "./DateDivider";
 
 const Call = (props) => {
   const callTime = formatTime(props.created_at);
