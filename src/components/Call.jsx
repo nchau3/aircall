@@ -9,6 +9,7 @@ import "../css/call.css";
 //helpers
 import { callTypeString, formatDay, formatTime } from "../helpers";
 import classNames from "classnames";
+import FadeIn from "react-fade-in/lib/FadeIn";
 
 const Call = (props) => {
   const callTime = formatTime(props.created_at);
@@ -26,7 +27,7 @@ const Call = (props) => {
   return (
     <div className="activity-feed-item">
       {props.firstOfDay && <DateDivider date={formatDay(props.created_at)}/>}
-      <li className="call-container">
+      <li className="call-container" onClick={() => props.onClick(props.id)}>
         <span className="call-overview">
           <div className="call-overview-left">
             <div className="call-type">
@@ -43,6 +44,15 @@ const Call = (props) => {
             <div className="twelve-hour">{callTime.twelveHour}</div>
           </div>
         </span>
+        {props.selected === props.id &&
+        <FadeIn wrapperTag="span" className="call-details">
+            <div>6 minutes</div>
+            <div className="button-container" onClick={e => e.stopPropagation()}>
+              <i className="fa-solid fa-box-archive archive-button"></i>
+              <div className="button-label">Archive</div>
+            </div>
+        </FadeIn>
+        }
       </li>
     </div>
   )
