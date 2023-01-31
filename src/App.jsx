@@ -19,6 +19,10 @@ const App = () => {
       setIsLoading(false);
     })
   }, []);
+  
+  const selectFilter = (newFilter) => {
+    setFilter(newFilter);
+  };
 
   const filterCalls = (filter, calls) => {
     if (filter === "inbox") {
@@ -28,10 +32,6 @@ const App = () => {
     } else {
       return calls;
     }
-  }
-
-  const selectFilter = (newFilter) => {
-    setFilter(newFilter);
   };
 
   return (

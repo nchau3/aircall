@@ -8,6 +8,7 @@ import "../css/activity-feed.css";
 
 //helpers
 import { checkDay } from "../helpers";
+import FadeIn from "react-fade-in/lib/FadeIn";
 
 const ActivityFeed = (props) => {
   
@@ -29,9 +30,9 @@ const ActivityFeed = (props) => {
   });
 
   return (
-    <ul>
+    <FadeIn wrapperTag={"ul"} delay={75}>
       {callList}
-    </ul>
+    </FadeIn>
   )
 }
 

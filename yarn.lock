@@ -3871,7 +3871,12 @@
     "prop-types" "^15.6.2"
     "scheduler" "^0.13.0"
 
-"react@^16.0.0", "react@^16.8.0":
+"react-fade-in@^2.0.1":
+  "integrity" "sha512-oqS/WT4znaXEHmL+yo0IDUDY7uC9K4RP35j1SdRUEBspR09B2iIC0i8oJ28tPOr6Ez/L2aktF9p89j+DbsTVNw=="
+  "resolved" "https://registry.npmjs.org/react-fade-in/-/react-fade-in-2.0.1.tgz"
+  "version" "2.0.1"
+
+"react@^16.0.0", "react@^16.8 || 17", "react@^16.8.0":
   "integrity" "sha512-g+nikW2D48kqgWSPwNo0NH9tIGG3DsQFlrtrQ1kj6W77z5ahyIHG0w8kPpz4Sdj6gyLnz0lEd/xsjOoGge2MYQ=="
   "resolved" "https://registry.npmjs.org/react/-/react-16.8.0.tgz"
   "version" "16.8.0"
