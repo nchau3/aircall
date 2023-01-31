@@ -7,7 +7,7 @@ import DateDivider from "./DateDivider";
 import "../css/call.css";
 
 //helpers
-import { callTypeString, formatDay, formatTime } from "../helpers";
+import { callTypeString, formatCallDuration, formatDay, formatTime } from "../helpers";
 import classNames from "classnames";
 import FadeIn from "react-fade-in/lib/FadeIn";
 
@@ -46,7 +46,7 @@ const Call = (props) => {
         </span>
         {props.selected === props.id &&
         <FadeIn wrapperTag="span" className="call-details">
-            <div>6 minutes</div>
+            <div>{formatCallDuration(props.duration)}</div>
             <div className="button-container" onClick={e => e.stopPropagation()}>
               <i className="fa-solid fa-box-archive archive-button"></i>
               <div className="button-label">Archive</div>

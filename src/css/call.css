@@ -27,6 +27,11 @@
   border:  1px solid;
   border-radius: 13px;
   margin: .25rem 0;
+  transition: all .15s;
+}
+
+.call-container:hover {
+  background-color: rgb(243, 243, 243);
 }
 
 .call-overview {

@@ -8,7 +8,7 @@ const formatTime = (timestamp) => {
     time,
     twelveHour
   }
-}
+};
 
 const formatDay = (timestamp) => {
   const month = new Date(timestamp).toLocaleDateString(undefined, {month: "long"});
@@ -16,7 +16,7 @@ const formatDay = (timestamp) => {
   const year = new Date(timestamp).toLocaleDateString(undefined, {year: "numeric"});
 
   return (`${month}, ${day} ${year}`).toUpperCase();
-}
+};
 
 const checkDay = (calls) => {
   const dateStack = [];
@@ -33,7 +33,7 @@ const checkDay = (calls) => {
       return call;
     }
   })
-}
+};
 
 const callTypeString = (call_type, direction) => {
   if (direction === "inbound") {
@@ -55,6 +55,22 @@ const callTypeString = (call_type, direction) => {
         return "left voicemail for";
     }
   }
-}
+};
 
-export { formatTime, formatDay, checkDay, callTypeString };
+const formatCallDuration = (duration) => {
+  if (duration < 60) {
+    return `${duration} seconds`
+  } else if (duration >= 60 && duration < 120) {
+    return `${duration} minute`
+  } else if (duration >= 120 && duration < 3600) {
+    return `${Math.round(duration / 60)} minutes`
+  } else if (duration === 3600 && duration < 3660) {
+    return "1 hour"
+  } else if (duration > 3660 && duration < 86400) {
+    return `${Math.round(duration / 3600)}h ${Math.round((duration % 3600) / 60)}m`
+  } else if (duration > 86400) {
+    return `${Math.round(duration / 86400)}d ${Math.round((duration % 86400) / 3600)}h`
+  }
+};
+
+export { formatTime, formatDay, checkDay, callTypeString, formatCallDuration };
