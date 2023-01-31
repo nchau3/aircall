@@ -6,6 +6,7 @@ import Call from "./Call";
 
 //styles
 import "../css/activity-feed.css";
+import { checkDay } from "../helpers";
 
 const ActivityFeed = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -18,8 +19,8 @@ const ActivityFeed = () => {
       setIsLoading(false);
     })
   }, []);
-
-  const callList = calls.map(call => {
+    
+  const callList = checkDay(calls).map(call => {
     return (
       <Call
       key={call.id}
@@ -31,9 +32,10 @@ const ActivityFeed = () => {
       duration={call.via}
       call_type={call.call_type}
       created_at={call.created_at}
+      firstOfDay={call.firstOfDay}
       />
     )
-  })
+  });
 
   return (
     isLoading 

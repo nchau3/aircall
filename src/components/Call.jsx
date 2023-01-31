@@ -1,29 +1,33 @@
-import React from "react";
-import { formatDate } from "../helpers";
+import React, { useState } from "react";
+import { formatDay, formatTime } from "../helpers";
 
 import "../css/call.css";
+import DateDivider from "./DateDivider";
 
 const Call = (props) => {
-  const callTime = formatDate(props.created_at);
+  const callTime = formatTime(props.created_at);
 
   return (
-    <li className="call-container">
-      <span className="call-overview">
-        <div className="call-overview-left">
-          <div className="call-type">
-            <i className="fa-solid fa-phone"></i>
+    <div className="activity-feed-item">
+      {props.firstOfDay && <DateDivider date={formatDay(props.created_at)}/>}
+      <li className="call-container" onClick={() => clickHandler(props.id)}>
+        <span className="call-overview">
+          <div className="call-overview-left">
+            <div className="call-type">
+              <i className="fa-solid fa-phone"></i>
+            </div>
+            <div>
+              <div>{props.from}</div>
+              <div>missed call from {props.via}</div>
+            </div>
           </div>
-          <div>
-            <div>{props.from}</div>
-            <div>missed call from {props.via}</div>
+          <div className="call-overview-right">
+            <div>⋮ {callTime.time}</div>
+            <div className="twelve-hour">{callTime.twelveHour}</div>
           </div>
-        </div>
-        <div className="call-overview-right">
-          <div>⋮ {callTime.time} </div>
-          <div className="twelve-hour">{callTime.twelveHour}</div>
-        </div>
-      </span>
-    </li>
+        </span>
+      </li>
+    </div>
   )
 }
 
