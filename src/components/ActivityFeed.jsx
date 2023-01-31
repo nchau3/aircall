@@ -39,17 +39,13 @@ const ActivityFeed = () => {
   });
 
   return (
-    <Fragment>
-      <NavBar />
-      {isLoading 
-      ? 
-      <h3>LOADING CALLS...</h3>
-      :
-      <ul>
-        {callList}
-      </ul>
-      }
-    </Fragment>
+    isLoading 
+    ? 
+    <h3>LOADING CALLS...</h3>
+    :
+    <ul>
+      {callList}
+    </ul>
   )
 }
 

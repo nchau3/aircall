@@ -8,7 +8,6 @@
 
 .date-divider {
   width: 100%;
-  position: relative;
   text-align: center;
   font-size: 1rem;
   padding: .5rem;
@@ -17,7 +16,6 @@
 
 .date {
   background-color: white;
-  z-index: 1;
 }
 
 .call-container {
