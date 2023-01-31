@@ -39,6 +39,11 @@
   margin: 0 .75rem;
 }
 
+.call-direction {
+  font-size: .75rem;
+  margin-bottom: .75rem;
+}
+
 .call-overview-left {
   display: flex;
 }

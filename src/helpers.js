@@ -35,4 +35,26 @@ const checkDay = (calls) => {
   })
 }
 
-export { formatTime, formatDay, checkDay };
+const callTypeString = (call_type, direction) => {
+  if (direction === "inbound") {
+    switch (call_type) {
+      case "missed":
+        return "missed call from";
+      case "answered":
+        return "call from";
+      case "voicemail":
+        return "voicemail from";
+    }
+  } else if (direction === "outbound") {
+    switch (call_type) {
+      case "missed":
+        return "tried to call";
+      case "answered":
+        return "called";
+      case "voicemail":
+        return "left voicemail for";
+    }
+  }
+}
+
+export { formatTime, formatDay, checkDay, callTypeString };
