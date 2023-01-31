@@ -29,7 +29,7 @@ const Call = (props) => {
               <i className={callDirectionClassName}></i>
             </div>
             <div>
-              <div>{props.from}</div>
+              <div className="call-from">{props.from}</div>
               <div>{callTypeString(props.call_type, props.direction)} {props.via ? props.via : "private number"}</div>
             </div>
           </div>
