@@ -36,6 +36,7 @@ const ActivityFeed = (props) => {
       firstOfDay={call.firstOfDay}
       selected={selected}
       onClick={clickHandler}
+      onSubmit={props.archiveCall}
       />
     )
   });

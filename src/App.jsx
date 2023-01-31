@@ -1,38 +1,24 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React from 'react';
 import ReactDOM from 'react-dom';
 
+//components
 import Header from './Header.jsx';
 import NavBar from './components/NavBar.jsx';
 import ActivityFeed from './components/ActivityFeed.jsx';
 import Loading from './components/Loading.jsx';
 
+//state management
+import useApplicationData from './hooks/useApplicationData.js';
+
 const App = () => {
-  const [isLoading, setIsLoading] = useState(true);
-  const [calls, setCalls] = useState([]);
-  const [filter, setFilter] = useState("inbox"); 
-
-  useEffect(() => {
-    axios.get("https://charming-bat-singlet.cyclic.app/https://cerulean-marlin-wig.cyclic.app/activities")
-    .then(response => {
-      setCalls((response.data).reverse());
-      setIsLoading(false);
-    })
-  }, []);
-  
-  const selectFilter = (newFilter) => {
-    setFilter(newFilter);
-  };
-
-  const filterCalls = (filter, calls) => {
-    if (filter === "inbox") {
-      return calls.filter(call => !call.is_archived);
-    } else if (filter === "archived") {
-      return calls.filter(call => call.is_archived);
-    } else {
-      return calls;
-    }
-  };
+  const { 
+    isLoading,
+    calls,
+    filter,
+    selectFilter,
+    filterCalls,
+    archiveCall
+   } = useApplicationData();
 
   return (
     <div className='container'>
@@ -42,7 +28,7 @@ const App = () => {
         {isLoading ?
           <Loading />
           :
-          <ActivityFeed calls={filterCalls(filter, calls)}/>
+          <ActivityFeed calls={filterCalls(filter, calls)} archiveCall={archiveCall}/>
         }
       </div>
     </div>

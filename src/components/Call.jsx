@@ -12,6 +12,7 @@ import classNames from "classnames";
 import FadeIn from "react-fade-in/lib/FadeIn";
 
 const Call = (props) => {
+  //formatting call data, selecting icons
   const callTime = formatTime(props.created_at);
 
   const callTypeClassNames = classNames("fa-solid", {
@@ -47,7 +48,11 @@ const Call = (props) => {
         {props.selected === props.id &&
         <FadeIn wrapperTag="span" className="call-details">
             <div>{formatCallDuration(props.duration)}</div>
-            <div className="button-container" onClick={e => e.stopPropagation()}>
+            <div className="button-container" onClick={e => {
+                e.stopPropagation();
+                props.onSubmit(props.id, props.is_archived);
+              }
+            }>
               <i className="fa-solid fa-box-archive archive-button"></i>
               <div className="button-label">Archive</div>
             </div>
