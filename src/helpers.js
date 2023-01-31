@@ -15,7 +15,7 @@ const formatDay = (timestamp) => {
   const day = new Date(timestamp).toLocaleDateString(undefined, {day: "2-digit"});
   const year = new Date(timestamp).toLocaleDateString(undefined, {year: "numeric"});
 
-  return (`${month}, ${day} ${year}`);
+  return (`${month}, ${day} ${year}`).toUpperCase();
 }
 
 const checkDay = (calls) => {

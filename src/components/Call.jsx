@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { formatDay, formatTime } from "../helpers";
 
 import "../css/call.css";
@@ -18,7 +18,7 @@ const Call = (props) => {
             </div>
             <div>
               <div>{props.from}</div>
-              <div>missed call from {props.via}</div>
+              <div>missed call from {props.via ? props.via : "unknown"}</div>
             </div>
           </div>
           <div className="call-overview-right">
