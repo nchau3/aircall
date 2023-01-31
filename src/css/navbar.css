@@ -1,0 +1,21 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 20px;
+}
+
+.nav-header {
+  font-size: 1.5rem;
+  margin-right: 1rem;
+}
+
+.nav-link-list {
+  display: flex;
+  align-items: center;
+}
+
+.nav-link {
+  padding: 0 .5rem;
+  height: fit-content;
+  border-right: 1px solid rgb(196, 196, 196);
+}

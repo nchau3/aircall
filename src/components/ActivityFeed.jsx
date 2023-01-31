@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import axios from "axios";
 
 //components
@@ -7,6 +7,7 @@ import Call from "./Call";
 //styles
 import "../css/activity-feed.css";
 import { checkDay } from "../helpers";
+import NavBar from "./NavBar";
 
 const ActivityFeed = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -38,13 +39,17 @@ const ActivityFeed = () => {
   });
 
   return (
-    isLoading 
-    ? 
-    <h3>LOADING CALLS...</h3>
-    :
-    <ul>
-      {callList}
-    </ul>
+    <Fragment>
+      <NavBar />
+      {isLoading 
+      ? 
+      <h3>LOADING CALLS...</h3>
+      :
+      <ul>
+        {callList}
+      </ul>
+      }
+    </Fragment>
   )
 }
 
