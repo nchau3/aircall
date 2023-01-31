@@ -10,6 +10,7 @@ import Loading from './components/Loading.jsx';
 const App = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [calls, setCalls] = useState([]);
+  const [filter, setFilter] = useState("inbox"); 
 
   useEffect(() => {
     axios.get("https://charming-bat-singlet.cyclic.app/https://cerulean-marlin-wig.cyclic.app/activities")
@@ -19,15 +20,29 @@ const App = () => {
     })
   }, []);
 
+  const filterCalls = (filter, calls) => {
+    if (filter === "inbox") {
+      return calls.filter(call => !call.is_archived);
+    } else if (filter === "archived") {
+      return calls.filter(call => call.is_archived);
+    } else {
+      return calls;
+    }
+  }
+
+  const selectFilter = (newFilter) => {
+    setFilter(newFilter);
+  };
+
   return (
     <div className='container'>
       <Header/>
-      <NavBar />
+      <NavBar onClick={selectFilter} selected={filter}/>
       <div className="container-view">
         {isLoading ?
           <Loading />
           :
-          <ActivityFeed calls={calls}/>
+          <ActivityFeed calls={filterCalls(filter, calls)}/>
         }
       </div>
     </div>
