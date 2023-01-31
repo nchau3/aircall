@@ -5,7 +5,7 @@ import ReactDOM from 'react-dom';
 import Header from './Header.jsx';
 import NavBar from './components/NavBar.jsx';
 import ActivityFeed from './components/ActivityFeed.jsx';
-import Loading from './components/Loading.jsx';
+import LoadingCalls from './components/LoadingCalls.jsx';
 
 //state management
 import useApplicationData from './hooks/useApplicationData.js';
@@ -17,7 +17,7 @@ const App = () => {
     filter,
     selectFilter,
     filterCalls,
-    archiveCall
+    archiveCall,
    } = useApplicationData();
 
   return (
@@ -26,9 +26,12 @@ const App = () => {
       <NavBar onClick={selectFilter} selected={filter}/>
       <div className="container-view">
         {isLoading ?
-          <Loading />
+          <LoadingCalls />
           :
-          <ActivityFeed calls={filterCalls(filter, calls)} archiveCall={archiveCall}/>
+          <ActivityFeed 
+            calls={filterCalls(filter, calls)}
+            archiveCall={archiveCall} 
+          />
         }
       </div>
     </div>

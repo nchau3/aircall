@@ -4,7 +4,8 @@ import axios from "axios";
 export default function useApplicationData() {
   const [isLoading, setIsLoading] = useState(true);
   const [calls, setCalls] = useState([]);
-  const [filter, setFilter] = useState("inbox"); 
+  const [filter, setFilter] = useState("inbox");
+  const [refresh, setRefresh] = useState(false);
 
   useEffect(() => {
     axios.get("https://charming-bat-singlet.cyclic.app/https://cerulean-marlin-wig.cyclic.app/activities")
@@ -12,7 +13,7 @@ export default function useApplicationData() {
       setCalls((response.data).reverse());
       setIsLoading(false);
     })
-  }, []);
+  }, [refresh]);
   
   const selectFilter = (newFilter) => {
     setFilter(newFilter);
@@ -29,12 +30,18 @@ export default function useApplicationData() {
   };
 
   const archiveCall = (call_id, status) => {
+    const newStatus = status ? false : true;
+    console.log(`updating status to ${newStatus}`);
+
     axios.patch(`https://charming-bat-singlet.cyclic.app/https://cerulean-marlin-wig.cyclic.app/activities/${call_id}`,
      {
-      is_archived: !status
+      is_archived: newStatus
      })
     .then(response => {
-      console.log(response);
+      setTimeout(() => {
+        setRefresh(!refresh);
+      }, 3000);
+      console.log(response.data);
     })
   }
 

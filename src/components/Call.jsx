@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 
 //components
 import DateDivider from "./DateDivider";
+import StatusMessage from "./StatusMessage";
 
 //styles
 import "../css/call.css";
@@ -12,7 +13,8 @@ import classNames from "classnames";
 import FadeIn from "react-fade-in/lib/FadeIn";
 
 const Call = (props) => {
-  //formatting call data, selecting icons
+  const [status, setStatus] = useState("");
+
   const callTime = formatTime(props.created_at);
 
   const callTypeClassNames = classNames("fa-solid", {
@@ -24,6 +26,11 @@ const Call = (props) => {
     "fa-arrow-right": props.direction === "outbound" && props.call_type !== "voicemail",
     "fa-arrow-left": props.direction === "inbound" && props.call_type !== "voicemail"
   });
+
+  const submitHandler = (id, status) => {
+    setStatus("pending");
+    props.onSubmit(id, status);
+  }
 
   return (
     <div className="activity-feed-item">
@@ -45,18 +52,26 @@ const Call = (props) => {
             <div className="twelve-hour">{callTime.twelveHour}</div>
           </div>
         </span>
-        {props.selected === props.id &&
+        {(props.selected === props.id && !status) &&
         <FadeIn wrapperTag="span" className="call-details">
             <div>{formatCallDuration(props.duration)}</div>
             <div className="button-container" onClick={e => {
-                e.stopPropagation();
-                props.onSubmit(props.id, props.is_archived);
-              }
-            }>
+              e.stopPropagation();
+              submitHandler(props.id, props.is_archived);
+            }}>
               <i className="fa-solid fa-box-archive archive-button"></i>
               <div className="button-label">Archive</div>
             </div>
         </FadeIn>
+        }
+        {status === "pending" && 
+          <StatusMessage message={"Archiving call..."} />
+        }
+        {status === "success" &&
+          <StatusMessage message={"Call archived!"} />
+        }
+        {status === "error" &&
+          <StatusMessage message={"Error. Call not updated."} />
         }
       </li>
     </div>

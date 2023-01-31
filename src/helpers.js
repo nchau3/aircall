@@ -57,6 +57,7 @@ const callTypeString = (call_type, direction) => {
   }
 };
 
+//accounts for extra long calls
 const formatCallDuration = (duration) => {
   if (duration < 60) {
     return `${duration} seconds`
