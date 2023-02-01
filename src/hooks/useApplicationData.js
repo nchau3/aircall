@@ -19,6 +19,10 @@ export default function useApplicationData() {
     setFilter(newFilter);
   };
 
+  const reload = () => {
+    setRefresh(!refresh);
+  }
+
   const filterCalls = (filter, calls) => {
     if (filter === "inbox") {
       return calls.filter(call => !call.is_archived);
@@ -29,21 +33,5 @@ export default function useApplicationData() {
     }
   };
 
-  const archiveCall = (call_id, status) => {
-    const newStatus = status ? false : true;
-    console.log(`updating status to ${newStatus}`);
-
-    axios.patch(`https://charming-bat-singlet.cyclic.app/https://cerulean-marlin-wig.cyclic.app/activities/${call_id}`,
-     {
-      is_archived: newStatus
-     })
-    .then(response => {
-      setTimeout(() => {
-        setRefresh(!refresh);
-      }, 3000);
-      console.log(response.data);
-    })
-  }
-
-  return { isLoading, calls, filter, selectFilter, filterCalls, archiveCall };
+  return { isLoading, calls, filter, selectFilter, filterCalls, reload };
 }

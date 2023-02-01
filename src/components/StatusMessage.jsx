@@ -1,8 +1,16 @@
+import classNames from "classnames";
 import React from "react";
 
+import "../css/status-message.css"
+
 const StatusMessage = (props) => {
+  const statusClassNames = classNames("status-message", {
+    "success": props.success,
+    "error": props.error
+  })
+
   return (
-    <div className="status-message">{props.message}</div>
+    <div className={statusClassNames}>{props.message}</div>
   )
 }
 

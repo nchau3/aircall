@@ -37,7 +37,7 @@ const ActivityFeed = (props) => {
       is_archived={call.is_archived === undefined ? false : call.is_archived}
       selected={selected}
       onClick={dropdown}
-      onSubmit={props.archiveCall}
+      reload={props.reload}
       />
     )
   });

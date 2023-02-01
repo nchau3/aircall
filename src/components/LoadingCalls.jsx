@@ -5,8 +5,8 @@ import "../css/loading.css";
 
 const Loading = () => {
   return (
-    <div className="loading">
-      <div>Loading Calls...</div>
+    <div className="loading-container">
+      <div className="loading">Loading Calls...</div>
       <div></div>
     </div>
   )

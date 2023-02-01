@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios";
 
 //components
 import DateDivider from "./DateDivider";
@@ -27,9 +28,32 @@ const Call = (props) => {
     "fa-arrow-left": props.direction === "inbound" && props.call_type !== "voicemail"
   });
 
-  const submitHandler = (id, status) => {
+  const archiveCall = (call_id, status) => {
+    const newStatus = status ? false : true;
+
     setStatus("pending");
-    props.onSubmit(id, status);
+
+    axios.patch(`https://charming-bat-singlet.cyclic.app/https://cerulean-marlin-wig.cyclic.app/activities/${call_id}`,
+     {
+      is_archived: newStatus
+     })
+     .then(response => {
+      console.log(response.data);
+
+      if (response.status === 200) {
+        setStatus("success");
+        setTimeout(() => {
+          props.reload();
+        }, 1000);
+      }
+    })
+    .catch(error => {
+      console.log(error);
+      setStatus("error");
+      setTimeout(() => {
+        setStatus("");
+      }, 2000);
+    })
   }
 
   return (
@@ -57,7 +81,7 @@ const Call = (props) => {
             <div>{formatCallDuration(props.duration)}</div>
             <div className="button-container" onClick={e => {
               e.stopPropagation();
-              submitHandler(props.id, props.is_archived);
+              archiveCall(props.id, props.is_archived);
             }}>
               <i className="fa-solid fa-box-archive archive-button"></i>
               <div className="button-label">Archive</div>
@@ -65,13 +89,13 @@ const Call = (props) => {
         </FadeIn>
         }
         {status === "pending" && 
-          <StatusMessage message={"Archiving call..."} />
+          <StatusMessage pending message={"Updating call..."} />
         }
         {status === "success" &&
-          <StatusMessage message={"Call archived!"} />
+          <StatusMessage success message={`Call moved to ${props.is_archived ? "Inbox" : "Archived"}!`} />
         }
         {status === "error" &&
-          <StatusMessage message={"Error. Call not updated."} />
+          <StatusMessage error message={"Error. Unable to update call."} />
         }
       </li>
     </div>

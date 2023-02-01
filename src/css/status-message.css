@@ -1,0 +1,12 @@
+.status-message {
+  font-size: 1rem;
+}
+
+.success {
+  color: rgb(6, 173, 6);
+}
+
+.error {
+  color: red;
+}
+

@@ -17,7 +17,7 @@ const App = () => {
     filter,
     selectFilter,
     filterCalls,
-    archiveCall,
+    reload
    } = useApplicationData();
 
   return (
@@ -30,7 +30,7 @@ const App = () => {
           :
           <ActivityFeed 
             calls={filterCalls(filter, calls)}
-            archiveCall={archiveCall} 
+            reload={reload} 
           />
         }
       </div>
