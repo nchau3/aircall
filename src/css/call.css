@@ -94,6 +94,10 @@
   padding: 1rem;
 }
 
+.call-details li {
+  padding: .15rem 0;
+}
+
 .button-container {
   display: flex;
   flex-direction: column;

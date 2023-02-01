@@ -71,7 +71,7 @@ const Call = (props) => {
             </div>
             <div>
               <div className="call-from">{props.from}</div>
-              <div>{callTypeString(props.call_type, props.direction)} {props.via ? props.via : "private number"}</div>
+              <div>{callTypeString(props.call_type, props.direction)} {props.via ? props.via : "unknown caller"}</div>
             </div>
           </div>
           <div className="call-overview-right">
@@ -81,7 +81,12 @@ const Call = (props) => {
         </span>
         {(props.selected === props.id && !status) &&
         <FadeIn wrapperTag="span" className="call-details">
-            <div>{formatCallDuration(props.duration)}</div>
+            <ul className="call-details-list">
+              <li>from: {props.from ? props.from : "unknown caller"}</li>
+              <li>to: {props.to ? props.to : "unknown caller"}</li>
+              <li>{formatCallDuration(props.duration)}</li>
+            </ul>
+
             <SubmitButton
               onSubmit={archiveCall}
               id={props.id}
