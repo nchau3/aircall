@@ -11,15 +11,6 @@ import { checkDay } from "../helpers";
 import FadeIn from "react-fade-in/lib/FadeIn";
 
 const ActivityFeed = (props) => {
-  const [selected, setSelected] = useState("");
-
-  const dropdown = (call_id) => {
-    if (selected !== call_id) {
-      setSelected(call_id);
-    } else {
-      setSelected("");
-    }
-  };
   
   const callList = checkDay(props.calls).map(call => {
     return (
@@ -35,8 +26,9 @@ const ActivityFeed = (props) => {
       created_at={call.created_at}
       firstOfDay={call.firstOfDay}
       is_archived={call.is_archived === undefined ? false : call.is_archived}
-      selected={selected}
-      onClick={dropdown}
+      selected={props.selected}
+      onClick={props.dropdown}
+      filter={props.filter}
       reload={props.reload}
       />
     )

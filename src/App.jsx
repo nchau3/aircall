@@ -17,6 +17,8 @@ const App = () => {
     filter,
     selectFilter,
     filterCalls,
+    selected,
+    dropdown,
     reload
    } = useApplicationData();
 
@@ -30,7 +32,10 @@ const App = () => {
           :
           <ActivityFeed 
             calls={filterCalls(filter, calls)}
-            reload={reload} 
+            filter={filter}
+            reload={reload}
+            dropdown={dropdown}
+            selected={selected}
           />
         }
       </div>

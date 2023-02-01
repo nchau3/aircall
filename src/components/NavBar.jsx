@@ -10,7 +10,7 @@ const NavBar = (props) => {
       <div className="nav-header">Activity</div>
       <ul className="nav-link-list">
         <NavLink onClick={props.onClick} name="Inbox" selected={props.selected === "inbox"}/>
-        <NavLink onClick={props.onClick} name="Archived" selected={props.selected === "archived"}/>
+        <NavLink onClick={props.onClick} name="Archive" selected={props.selected === "archive"}/>
         <NavLink onClick={props.onClick} name="All" selected={props.selected === "all"}/>
       </ul>
     </span>

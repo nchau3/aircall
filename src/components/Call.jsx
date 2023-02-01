@@ -12,6 +12,7 @@ import "../css/call.css";
 import { callTypeString, formatCallDuration, formatDay, formatTime } from "../helpers";
 import classNames from "classnames";
 import FadeIn from "react-fade-in/lib/FadeIn";
+import SubmitButton from "./SubmitButton";
 
 const Call = (props) => {
   const [status, setStatus] = useState("");
@@ -56,6 +57,8 @@ const Call = (props) => {
     })
   }
 
+  const submitDestination = props.is_archived ? "Inbox" : "Archive";
+
   return (
     <div className="activity-feed-item">
       {props.firstOfDay && <DateDivider date={formatDay(props.created_at)}/>}
@@ -79,20 +82,19 @@ const Call = (props) => {
         {(props.selected === props.id && !status) &&
         <FadeIn wrapperTag="span" className="call-details">
             <div>{formatCallDuration(props.duration)}</div>
-            <div className="button-container" onClick={e => {
-              e.stopPropagation();
-              archiveCall(props.id, props.is_archived);
-            }}>
-              <i className="fa-solid fa-box-archive archive-button"></i>
-              <div className="button-label">Archive</div>
-            </div>
+            <SubmitButton
+              onSubmit={archiveCall}
+              id={props.id}
+              status={props.is_archived}
+              destination={submitDestination}
+            />
         </FadeIn>
         }
         {status === "pending" && 
           <StatusMessage pending message={"Updating call..."} />
         }
         {status === "success" &&
-          <StatusMessage success message={`Call moved to ${props.is_archived ? "Inbox" : "Archived"}!`} />
+          <StatusMessage success message={`Call moved to ${submitDestination}!`} />
         }
         {status === "error" &&
           <StatusMessage error message={"Error. Unable to update call."} />

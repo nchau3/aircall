@@ -3,10 +3,9 @@
 }
 
 .success {
-  color: rgb(6, 173, 6);
+  color: rgb(0, 197, 0);
 }
 
 .error {
-  color: red;
+  color: rgb(204, 0, 0);
 }
-
