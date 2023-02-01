@@ -1,1 +1,1 @@
-web: webpack --mode production
+web: node scripts/heroku-start.js
